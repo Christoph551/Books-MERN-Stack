@@ -33,12 +33,29 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        saveBook: async () => {
-            // Accepts a book author's array, description, title, bookId, image and link as parameters; returns a User type.
-            // Look into creating what's known as an INPUT type to handle all of these parameters
+        saveBook: async (parent, { input }, context) => {
+            if (context.user) {
+                return await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savedBooks: input } },
+                    { new: true, runValidators: true }
+                );
+            }
+            throw new AuthenticationError('You need to log in first!');
         },
         removeBook: async (parent, { bookId }, context) => {
             // Returns a User type
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savedBooks: { bookId: bookId } } },
+                    { new: true }
+                );
+            }
+            if (!updatedUser) {
+                throw new AuthenticationError("Couldn't find user with this id!");
+            }
+            return res.json(updatedUser);
         }
     }
 }
