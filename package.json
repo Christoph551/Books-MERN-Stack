@@ -1,6 +1,7 @@
 {
   "name": "googlebooks-app",
   "version": "1.0.0",
+  "homepage": "https://mighty-mesa-95864.herokuapp.com/",
   "description": "",
   "main": "server/server.js",
   "scripts": {
