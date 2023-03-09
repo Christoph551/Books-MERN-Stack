@@ -2,13 +2,16 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import { LOGIN_USER } from '../utils/mutations';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
+  const [getMe] = useQuery(GET_ME)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,7 +29,7 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await LOGIN_USER(userFormData);
+      const response = await getMe(userFormData);
 
       if (!response.ok) {
         throw new Error('something went wrong!');
