@@ -21,7 +21,7 @@ import { removeBookId } from '../utils/localStorage';
     const userDataLength = Object.keys(userData).length;
 
     const [getMe] = useQuery(GET_ME);
-    const [deleteBook] = useMutation(REMOVE_BOOK);
+    const deleteBook = useMutation(REMOVE_BOOK);
   
     useEffect(() => {
       const getUserData = async () => {

@@ -3,14 +3,14 @@ import {
 } from '@apollo/client';
 
 export const GET_ME = gql`
-    query user($username: String!) {
-        user(username: $username) {
+    query getMe($username: String!) {
+        getMe(username: $username) {
             _id
             username
             email
             password
             savedBooks {
-                _id
+                bookId
                 authors
                 description
                 image

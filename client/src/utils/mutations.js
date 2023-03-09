@@ -5,23 +5,32 @@ import {
 export const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!) {
         login(email: $email, password: $password) {
-        token
-        user {
-            _id
-            username
-        }
+            token
+            user {
+                _id
+            }
         }
     }
 `
 
 export const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!) {
-        addUser(username: $username, email: $email, password: $password) {
+    mutation newUser($username: String!, $email: String!, $password: String!) {
+        newUser(username: $username, email: $email, password: $password) {
         token
         user {
             _id
             username
-        }
+            email
+            bookCount
+            savedBooks {
+                authors
+                bookId
+                image
+                link
+                title
+                description
+                }
+            }
         }
     }
 `
@@ -29,17 +38,17 @@ export const ADD_USER = gql`
 export const SAVE_BOOK = gql`
     mutation saveBook($input: SaveBook!) {
         saveBook(input: $input) {
-        _id
-        username
-        bookCount
-        savedBooks {
             _id
-            title
-            description
-            link
-            image
-            authors
-        }
+            username
+            bookCount
+            savedBooks {
+                _id
+                title
+                description
+                link
+                image
+                authors
+            }
         }
     }
 `
@@ -57,7 +66,7 @@ export const REMOVE_BOOK = gql`
             link
             image
             authors
-        }
+            }
         }
     }
 `
