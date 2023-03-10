@@ -6,7 +6,8 @@
 
 This application was to take source code from being a RESTful application and convert that to a MERN stack application by implementing GraphQL. This taught me a good amount of information about different npm packages that could be implemented and challenges you may face with deprecations. Overall, I learned a great deal in documentation dives to find syntactical differences between technologies.
 
-***Please Note*** Having difficulties with login functionality. Working on a fix.
+`***Please Note***` API is fully functional, and users have the ability to login, signup and logout. 
+However, I'm still struggling with saving a book, as well as navigating to the saved books page. Will continue working on a fix for this. 
 
 ## Table of contents
 - [Installation](#Insallation)
